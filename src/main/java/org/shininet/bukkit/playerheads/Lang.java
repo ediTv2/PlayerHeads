@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import org.bukkit.plugin.Plugin;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
@@ -13,18 +15,12 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.bukkit.plugin.Plugin;
-
 /**
  * @author meiskam
  */
 
 public class Lang {
     private static final String BUNDLE_NAME = "lang";
-    private static Plugin plugin;
-    private static ResourceBundle RESOURCE_BUNDLE;
-    private static ResourceBundle RESOURCE_BUNDLE0;
-
     public static String BEHEAD_GENERIC;
     public static String BEHEAD_OTHER;
     public static String BEHEAD_SELF;
@@ -129,6 +125,9 @@ public class Lang {
     public static String SYNTAX;
     public static String UPDATE1;
     public static String UPDATE3;
+    private static Plugin plugin;
+    private static ResourceBundle RESOURCE_BUNDLE;
+    private static ResourceBundle RESOURCE_BUNDLE0;
 
     private Lang() {
     }
@@ -162,14 +161,14 @@ public class Lang {
         }
 
         try {
-            URL[] urls = { plugin.getDataFolder().toURI().toURL() };
+            URL[] urls = {plugin.getDataFolder().toURI().toURL()};
             RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (MissingResourceException e) {
             plugin.saveResource(BUNDLE_NAME.concat(locale).replace('.', '/').concat(".properties"), false);
             try {
-                URL[] urls = { plugin.getDataFolder().toURI().toURL() };
+                URL[] urls = {plugin.getDataFolder().toURI().toURL()};
                 RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
             } catch (Exception e2) {
                 e2.printStackTrace();

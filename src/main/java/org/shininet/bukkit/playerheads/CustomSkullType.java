@@ -40,10 +40,6 @@ public enum CustomSkullType {
 
     private final String owner;
 
-    private static class Holder {
-        static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
-    }
-
     CustomSkullType(String owner) {
         this.owner = owner;
         Holder.map.put(owner, this);
@@ -54,6 +50,10 @@ public enum CustomSkullType {
         for (String key : toConvert) {
             Holder.map.put(key, this);
         }
+    }
+
+    public static CustomSkullType get(String owner) {
+        return Holder.map.get(owner);
     }
 
     public String getOwner() {
@@ -68,7 +68,7 @@ public enum CustomSkullType {
         return Lang.getString("HEAD_SPAWN_" + name());
     }
 
-    public static CustomSkullType get(String owner) {
-        return Holder.map.get(owner);
+    private static class Holder {
+        static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
     }
 }

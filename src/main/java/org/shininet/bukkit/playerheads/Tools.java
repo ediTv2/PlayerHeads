@@ -4,18 +4,14 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.Set;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.SkullMeta;
+
+import java.util.Set;
 
 /**
  * @author meiskam
@@ -86,8 +82,8 @@ public class Tools {
             return Skull(SkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
             return Skull(SkullType.SKELETON, quantity);
-        //} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-        //    return Skull(SkullType.WITHER, quantity);
+            //} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
+            //    return Skull(SkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }
@@ -102,7 +98,7 @@ public class Tools {
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         boolean shouldSet = false;
         if ((skullOwner != null) && (!skullOwner.equals(""))) {
-        	skullMeta.setOwner(skullOwner);
+            skullMeta.setOwner(skullOwner);
             shouldSet = true;
         }
         if (displayName != null) {

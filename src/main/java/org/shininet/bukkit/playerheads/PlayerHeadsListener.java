@@ -139,8 +139,6 @@ public class PlayerHeadsListener implements Listener {
             if (((Slime) event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
-        } else if (entityType == EntityType.ENDER_DRAGON) {
-            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
@@ -284,9 +282,5 @@ public class PlayerHeadsListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("playerheads.update") && plugin.getUpdateReady()) {
-            Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName());
-            Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/bukkit-plugins/minecraft/" + Config.updateSlug);
-        }
     }
 }

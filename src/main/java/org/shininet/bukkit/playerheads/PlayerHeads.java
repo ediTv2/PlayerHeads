@@ -4,8 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.logging.Logger;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -14,19 +12,21 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Logger;
+
 /**
  * @author meiskam
  */
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 
-    private PlayerHeadsCommandExecutor commandExecutor;
-    private PlayerHeadsListener listener;
-    public Logger logger;
-    public FileConfiguration configFile;
     private static boolean updateReady = false;
     private static String updateName = "";
+    public Logger logger;
+    public FileConfiguration configFile;
     public boolean NCPHook = false;
+    private PlayerHeadsCommandExecutor commandExecutor;
+    private PlayerHeadsListener listener;
 
     @Override
     public void onEnable() {
@@ -36,7 +36,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         saveDefaultConfig();
 
         Lang.init(this);
-        initUpdater();
         initNCPHook();
 
         listener = new PlayerHeadsListener(this);
@@ -54,20 +53,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     }
 
 
-    private void initUpdater() {
-        try {
-            if (configFile.getBoolean("updatecheck") && !(updateReady)) {
-                Updater updater = new Updater(this, Config.updateID, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
-                updateReady = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
-                updateName = updater.getLatestName(); // Get the latest version
-            }
-        } catch (Exception e) {
-            logger.warning(Lang.ERROR_UPDATER);
-        }
-    }
-
     private void initNCPHook() {
-        if(getServer().getPluginManager().getPlugin("NoCheatPlus") != null){
+        if (getServer().getPluginManager().getPlugin("NoCheatPlus") != null) {
             NCPHook = true;
         }
     }

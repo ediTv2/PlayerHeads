@@ -4,10 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,6 +11,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author meiskam
@@ -75,30 +75,30 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                         if (key.equals(keySet.toLowerCase())) {
                             keyFound = true;
                             switch (Config.configKeys.get(keySet.toLowerCase())) {
-                            case BOOLEAN:
-                                if (value.equals("false") || value.equals("no") || value.equals("0")) {
-                                    plugin.configFile.set(key, false);
-                                } else {
-                                    plugin.configFile.set(key, true);
-                                }
-                                break;
-                            case DOUBLE:
-                                try {
-                                    plugin.configFile.set(key, Double.parseDouble(value));
-                                } catch (NumberFormatException e) {
-                                    Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
-                                }
-                                break;
-                            case INT:
-                                try {
-                                    plugin.configFile.set(key, Integer.parseInt(value));
-                                } catch (NumberFormatException e) {
-                                    Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
-                                }
-                            break;
-                            default:
-                                plugin.logger.warning(Tools.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
-                                break;
+                                case BOOLEAN:
+                                    if (value.equals("false") || value.equals("no") || value.equals("0")) {
+                                        plugin.configFile.set(key, false);
+                                    } else {
+                                        plugin.configFile.set(key, true);
+                                    }
+                                    break;
+                                case DOUBLE:
+                                    try {
+                                        plugin.configFile.set(key, Double.parseDouble(value));
+                                    } catch (NumberFormatException e) {
+                                        Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
+                                    }
+                                    break;
+                                case INT:
+                                    try {
+                                        plugin.configFile.set(key, Integer.parseInt(value));
+                                    } catch (NumberFormatException e) {
+                                        Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
+                                    }
+                                    break;
+                                default:
+                                    plugin.logger.warning(Tools.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
+                                    break;
                             }
                             break;
                         }

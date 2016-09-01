@@ -24,6 +24,10 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
         this.drop = drop;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     /**
      * @return mutable ItemStack that will drop into the world once this event is over
      */
@@ -48,10 +52,6 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
 
     @Override
     public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlers;
     }
 }
